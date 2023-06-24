@@ -1,0 +1,171 @@
+.orders {
+    margin-top: 100px;
+    .heading {
+        margin-bottom: 50px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 30px;
+
+        .title {
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: #474747;
+        }
+
+        .desc {
+            color: gray;
+            width: 500px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+    }
+
+    .display {
+        padding: 0 100px;
+        margin-bottom: 60px;
+        
+
+        @media all and (max-width: 1280px) {
+            padding: 0 50px;
+        }
+        @media all and (max-width: 600px) {
+            padding: 0 20px;
+        }
+    }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        min-height: calc(100vh - 445px);
+        
+
+        .orderList {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+
+            .labels {
+                width: calc(100% - 20px);
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                background-color: #8363ac;
+                color: white;
+                padding: 5px 10px;
+                font-weight: 700;
+
+                @media all and (max-width: 768px) {
+                    display: none;
+                }
+
+                .id {
+                    flex: 2;
+                    border-right: 1px solid white;
+                }
+                .count {
+                    flex: 1;
+                    border-right: 1px solid white;
+                    
+                }
+                .amount {
+                    flex: 1;
+                    border-right: 1px solid white;
+                }
+                .status {
+                    flex: 1;
+                    border-right: 1px solid white;
+                }
+                .actions {
+                    flex: 1;
+                    border-right: 1px solid white;
+                }
+            }
+
+            .listItem {
+                display: flex;
+                gap: 10px;
+                align-items: center;
+                width: calc(100% - 20px);
+                padding: 10px 10px;
+                background-color: #efeeff;
+                margin: 5px 0;
+                color: gray;
+
+                @media all and (max-width: 768px) {
+                    flex-direction: column;
+                }
+
+                .id {
+                    flex: 2;
+                    border-right: 1px solid white;
+                    font-size: 14px;
+                    font-weight: 600;
+                    color: #8363ac;
+                }
+                .count {
+                    flex: 1;
+                    border-right: 1px solid white;
+                    display: flex;
+                    font-size: 16px;
+                    font-weight: 800;
+                    align-items: center;
+
+                    .icon {
+                        font-size: 20px;
+                        margin-right: 5px;
+                    }
+
+                }
+                .amount {
+                    flex: 1;
+                    border-right: 1px solid white;
+                    font-size: 16px;
+                    font-weight: 800;
+                    color: #8363ac;
+                }
+                .status {
+                    flex: 1;
+                    border-right: 1px solid white;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    span {
+                        width: fit-content;
+                        padding: 5px 10px;
+                        border-radius: 5px;
+
+
+                        &.pending {
+                            background-color: rgba(218, 165, 32, 0.227);
+                            color: goldenrod;
+                        }
+                        &.complete {
+                            background-color: rgba(0, 128, 0, 0.341);
+                            color: green;
+                        }
+                    }
+
+                }
+                .action {
+                    flex: 1;
+                    border-right: 1px solid white;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    button {
+                        border: none;
+                        background-color: #8363ac;
+                        color: white;
+                        width: fit-content;
+                        padding: 5px 15px;
+                        border-radius: 5px;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+}

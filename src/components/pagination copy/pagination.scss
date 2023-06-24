@@ -1,0 +1,59 @@
+.pagination {
+    background-color: #ffffff;
+    width: 100%;
+    height: fit-content;
+    margin-top: 20px;
+    border-top: 1px solid rgb(225, 225, 225);
+    padding: 10px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    .label {
+        color: #8363ac;
+        font-size: 14px;
+        width: fit-content;
+        font-weight: 600;
+    }
+
+    .paginationList {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        list-style: none;
+        justify-content: center;
+        margin-bottom: 5px;
+        width: fit-content;
+        padding: 0;
+
+        .paginationItem {
+            background-color: #8363ac8c;
+            width: fit-content;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 2px;
+
+            &.active {
+                background-color: #8363ac;
+            }
+
+            .pageLink {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 10px;
+                padding: 3px 7px;
+                cursor: pointer;
+
+                .icon {
+                    font-size: 20px;
+                }
+            }
+        }
+    }
+}

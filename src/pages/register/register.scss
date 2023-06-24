@@ -1,0 +1,146 @@
+.register {
+    margin-top: 100px;
+
+    .heading {
+        margin-bottom: 50px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 50px;
+
+        @media all and (max-width: 600px) {
+            padding: 0 20px;
+        }
+
+        .title {
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: #474747;
+            width: fit-content;
+            text-align: center;
+        }
+
+        .desc {
+            color: gray;
+            max-width: 500px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+    }
+
+    .display {
+        padding: 0 100px;
+        margin-bottom: 60px;
+
+        @media all and (max-width: 1280px) {
+            padding: 0 50px;
+        }
+        @media all and (max-width: 600px) {
+            padding: 0 20px;
+        }
+    }
+
+    .container {
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+
+        
+
+        img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            margin-bottom: 30px;
+            border-radius: 5px;
+        }
+
+        form {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            width: 100%;
+
+            .link {
+                font-size: 14px;
+                font-weight: 700;
+                color: gray;
+                margin-bottom: 10px;
+
+                span {
+                    color: #8363ac;
+                    cursor: pointer;
+                }
+            }
+
+            .inputGroup {
+                display: flex;
+                flex-direction: column;
+                margin-bottom: 20px;
+                width: 400px;
+
+                &.file {
+                    align-items: center;
+                    justify-content: end;
+                    height: 100%;
+                }
+
+                label {
+                    font-size: 16px;
+                    font-weight: 700;
+                    color: #474747;
+                    margin-bottom: 5px;
+                    display: flex;
+                    align-items: center;
+
+                    .passError {
+                        font-size: 12px;
+                        color: red;
+                        font-weight: 400;
+                        margin-left: 20px;
+                    }
+
+                    &#files {
+                        display: flex;
+                        flex-direction: column;
+                        height: 100%;
+
+                        .icon {
+                            margin-top: 10px;
+                            cursor: pointer;
+                        }
+                    }
+                }
+
+                input {
+                    border: none;
+                    background-color: #f2f2f2;
+                    height: 40px;
+                    outline: none;
+                    padding: 0 10px;
+                    font-size: 14px;
+                    color: gray;
+                    border-radius: 5px;
+                }
+
+                button {
+                    font-size: 16px;
+                    font-weight: 700;
+                    width: 150px;
+                    height: 40px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border: none;
+                    background-color: #8363ac;
+                    color: white;
+                    border-radius: 5px;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}

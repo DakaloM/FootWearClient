@@ -1,0 +1,253 @@
+.footer {
+    width: calc(100% );
+    padding: 0 1;
+    color: rgb(82, 82, 82);
+    
+    .footerContainer {
+        padding: 40px 100px;
+        display: flex;
+        flex-direction: column;
+        gap:30px;
+        background-color: #efeeff;
+        border-radius: 5px;
+
+        @media all and (max-width: 1280px) {
+            padding: 40px 50px;
+        }
+        @media all and (max-width: 600px) {
+            padding: 40px 20px;
+        }
+
+        .title {
+            font-size: 16px;
+            font-weight: 800;
+            color: #8363ac;
+            margin-bottom: 10px;
+        }
+
+        .top{
+            display: flex;
+            justify-content: space-between;
+
+            @media all and (max-width: 470px) {
+                flex-direction: column;
+            }
+
+            .left {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+
+                @media all and (max-width: 470px) {
+                    margin-bottom: 20px;
+                }
+                .logo {
+                    width: fit-content;
+                    display: flex;
+                    align-items: center;
+                    margin-bottom: 20px;
+    
+                    
+
+                    h1 {
+                        width: fit-content;
+                        font-size: 30px;
+                        font-weight: 800;
+                        color: #8363ac;
+                    }
+                }
+                .contactInfo {
+                    display: flex;
+                    flex-direction: column;
+                    margin-bottom: 20px;
+
+                    span {
+                        font-size: 14px;
+                        display: flex;
+                        align-items: center;
+                        margin-bottom: 10px;
+
+                        .icon {
+                            font-size: 18px;
+                            margin-right: 10px;
+                            color: gray
+
+                        }
+                    };
+                }
+                .socialIcons {
+                    display: flex;
+                    align-items: center;
+                    justify-content: flex-start;
+                    ul {
+                        width: 100px;
+                        padding: 0;;
+                        list-style: none;
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+
+                        li {
+
+                            .icon {
+                                font-size: 20px;
+                                color: gray;
+                            }
+                            &:hover {
+                                
+                                .icon {
+                                    font-size: 20px;
+                                    color: #8363ac;
+                                    cursor: pointer;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            .center {
+                flex: 1;
+                display: flex;
+                justify-content: space-around;
+
+                @media all and (max-width: 800px) {
+                    display: none;
+                }
+
+                .quickLinks,.legal{
+                    display: flex;
+                    flex-direction: column;
+                }
+                
+
+                ul {
+                    padding: 0;
+                    list-style: none;
+                    font-size: 12px;
+
+                    li {
+                        cursor: pointer;
+                        margin: 5px 0;
+
+                        &:hover {
+                            color: white;
+                        }
+                    }
+                }
+
+                .quickLinks {
+
+                    
+
+                    
+                }
+
+            }
+
+            .right {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+
+                
+
+                p{
+                    font-size: 14px;
+                    color: gray;
+                }
+
+                form {
+                    width: 100%;
+                    display: flex;
+                    justify-content: center;
+                    gap: 10px;
+
+                    @media all and (max-width: 600px) {
+                        flex-direction: column;
+                    }
+
+                    input {
+                        flex: 2;
+                        height: 35px;
+                        font-size: 14px;
+                        outline: none;
+                        padding: 5px 10px;
+                        color: gray;
+                        border: none;
+                        background-color: #d3d0f9;
+                        border-radius: 5px;
+
+                        @media all and (max-width: 470px) {
+                            width: 200px;
+                        }
+                    }
+
+                    button {
+                        flex: 1;
+                        background-color: transparent;
+                        border: 2px solid #8363ac;
+                        color: #8363ac;
+                        font-size: 16px;
+                        border-radius: 5px;
+                        font-weight: 800;
+                        cursor: pointer;
+                        transition: all 0.3s ease-in-out;
+
+                        @media all and (max-width: 600px) {
+                            width: fit-content;
+                        }
+
+                        &:hover {
+                            background-color: #8363ac;
+                            color: white;
+                            transition: all 0.3s ease-in-out;
+                        }
+                    }
+                }
+            }
+        }
+
+        
+
+    }
+
+    .bottom{
+        width: calc(100% - 20px);
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: white;
+        font-size: 14px;
+        font-weight: 300;
+
+        .text {
+            letter-spacing: 1.2px;
+            font-size: 12px;
+            color: rgb(125, 125, 125);
+        }
+
+        .button {
+            width: 30px;
+            height: 30px;
+            background-color: #fff;
+            color: rgb(5, 3, 32);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+
+            .icon {
+                font-size: 20px;
+                transition: ease-in-out 0.3s;
+
+                &:hover {
+                    font-size: 30px;
+                    transition: ease-in-out 0.3s;
+                }
+            }
+        }
+    }
+}
