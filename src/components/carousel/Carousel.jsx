@@ -69,7 +69,7 @@ const MultiCarousel = () => {
                         <div className="infoWrapper">
                           <span className="title">Latest Arrivals</span>
                           <p className="desc">Get the best and newest trends in the market</p>
-                          <Link style={{textDecoration: "none"}} to="/products"><span className="button">Browse Collection</span></Link>
+                          <Link style={{textDecoration: "none", color: "inherit"}} to="/products"><span className="button">Browse Collection</span></Link>
                         </div>
                         
                         
@@ -90,9 +90,9 @@ const MultiCarousel = () => {
                     
                     <div className="info second alignCenter">
                         <div className="infoWrapper">
-                          <span className="title">Best Sneakers</span>
-                          <p className="desc">We are the best at finding the most exclussive and trending Sneakers</p>
-                          <Link style={{textDecoration: "none"}} to="/products/sport"><span className="button">Browse Collection</span></Link>
+                          <span className="title">Occasional Shoes</span>
+                          <p className="desc">We are the best at finding the perfect shoe for for any occasion</p>
+                          <Link style={{textDecoration: "none" ,color: "inherit"}} to="/products/sport"><span className="button">Browse Collection</span></Link>
                         </div>
                         
                         
@@ -108,7 +108,7 @@ const MultiCarousel = () => {
                         <div className="infoWrapper">
                           <span className="title">Special Offers</span>
                           <p className="desc">Find out if you qualify for any special treatment from us</p>
-                          <Link style={{textDecoration: "none"}} to="/products/popular"><span className="button">Browse Collection</span></Link>
+                          <Link style={{textDecoration: "none", color: "inherit"}} to="/products/popular"><span className="button">Browse Collection</span></Link>
                         </div>
                         
                         

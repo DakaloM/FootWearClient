@@ -30,12 +30,12 @@ const Pagination = ({productsPerPage, totalProducts, setCurrentPage, currentPage
     <div className='pagination'>
         {pageNumbers.length > 1 && <>
             <ul className='paginationList'>
-                <li className="paginationItem">
+                { currentPage > 2 && <li className="paginationItem">
                     <span className="pageLink"onClick={() => setCurrentPage(1)}><KeyboardDoubleArrowLeftIcon  className='icon'/></span>
-                </li>
-                <li className="paginationItem">
+                </li>}
+                { currentPage > 1 && <li className="paginationItem">
                     <span className="pageLink"onClick={handlePrev}><ArrowBackIosNewIcon  className='icon'/></span>
-                </li>
+                </li>}
                 
                 {
                     pageNumbers.map(number => (
@@ -46,12 +46,12 @@ const Pagination = ({productsPerPage, totalProducts, setCurrentPage, currentPage
                     ))
                 }
 
-                <li className="paginationItem">
+                {currentPage < pageNumbers.length && <li className="paginationItem">
                     <span className="pageLink" onClick={handleNext}><ArrowForwardIosIcon  className='icon'/></span>
-                </li>
-                <li className="paginationItem">
+                </li>}
+                {pageNumbers.length - currentPage > 1 && <li className="paginationItem">
                     <span className="pageLink" onClick={() => setCurrentPage(pageNumbers[pageNumbers.length - 1])}><KeyboardDoubleArrowRightIcon  className='icon'/></span>
-                </li>
+                </li>}
             </ul>
             <span className='label'>page {currentPage} of {pageNumbers.length}</span>
         </>}

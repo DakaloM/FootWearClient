@@ -17,7 +17,6 @@ import { useSelector } from "react-redux";
 import Profile from "./pages/profile/Profile";
 import Navbar from "./components/navbar/Navbar";
 import Login from "./pages/login/Login";
-import Popular from "./pages/popular/Popular";
 import Reviews from "./pages/reviews/Reviews";
 import Register from "./pages/register/Register";
 import Orders from "./pages/orders/Orders";
@@ -97,10 +96,6 @@ function App() {
     {
       path: "/reviews", 
       element: <Reviews />     
-    },
-    {
-      path: "/popular", 
-      element: <Popular />     
     },
     {
       path: "/profile/:id", 

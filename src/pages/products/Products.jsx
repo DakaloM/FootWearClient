@@ -27,7 +27,7 @@ const Products = () => {
   const [search, setSearch] = useState("")
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
-  const [perPage, setPerPage] = useState(18);
+  const [perPage, setPerPage] = useState(12);
   const category = useParams().category
 
   const handleFilterChange = (e) => {
@@ -65,32 +65,16 @@ const Products = () => {
         
       }
       else if(filter){
-        setFilteredList(productList.filter(product => product.categories.includes(filter)));
+       
         setDisplayList(productList.filter(product => product.categories.includes(filter)))
         
       }
       else if(search){
-        if(filter) {
-          setDisplayList(filteredList.filter(product => product.title.toLowerCase().includes(search.toLowerCase())));
-          setSort("")
-        }
-        else {
+        
           setDisplayList(productList.filter(product => product.title.toLowerCase().includes(search.toLowerCase())))
-        }
+        
       }
-      else if(sort){
-        if(filter && search === ""){
-          setDisplayList(filteredList.sort(
-            sort === "highest"? ((a, b) => (a.price > b.price)) : ((a, b) => (a.price < b.price))
-          ));
-        }
-        else if(filter == "" && search){
-          setDisplayList((productList.filter(product => product.title.toLowerCase().includes(search.toLowerCase()))).sort({createdAt: parseInt(sort)}).limit(5));
-        }
-        else if(filter && search){
-          setDisplayList((filteredList.filter(product => product.title.toLowerCase().includes(search.toLowerCase()))).sort({createdAt: parseInt(sort)}).limit(5));
-        }
-      }
+
       else {
         setDisplayList(productList)
       }

@@ -54,7 +54,7 @@ const Navbar = () => {
     <div className={scrollPosition > 0 ? 'navbar scrolled' : 'navbar'} ref={navbarRef}>
         <div className="container">
             <div className="logo">
-                <Link style={{textDecoration: "none"}} to="/"><h1>FootWear</h1></Link>
+                <Link style={{textDecoration: "none", color: "inherit"}} to="/"><h1>FootWear</h1></Link>
                 <span onClick={() => setOpenMenu(!openMenu)}><MenuOutlinedIcon  className='icon'/></span>
             </div>
 
@@ -63,10 +63,9 @@ const Navbar = () => {
                 
                     <div className="menu">
                         <ul>
-                            <Link className='link' onClick={() => setOpenMenu(false)}  style={{textDecoration: "none"}}to="/"><li>Home</li></Link>
-                            <Link className='link' onClick={() => setOpenMenu(false)} style={{textDecoration: "none"}}to="/products"><li>Shoes</li></Link>
-                            <Link className='link' onClick={() => setOpenMenu(false)} style={{textDecoration: "none"}}to="/popular"><li>Popular</li></Link>
-                            <Link className='link' onClick={() => setOpenMenu(false)} style={{textDecoration: "none"}}to="/cart"><li><ShoppingCartOutlinedIcon className='icon' /><span>{cart.quantity}</span></li></Link>
+                            <Link className='link' onClick={() => setOpenMenu(false)}  style={{textDecoration: "none", color: "inherit"}}to="/"><li>Home</li></Link>
+                            <Link className='link' onClick={() => setOpenMenu(false)} style={{textDecoration: "none", color: "inherit"}}to="/products"><li>Shoes</li></Link>
+                            <Link className='link' onClick={() => setOpenMenu(false)} style={{textDecoration: "none", color: "inherit"}}to="/cart"><li><ShoppingCartOutlinedIcon className='icon' /><span>{cart.quantity}</span></li></Link>
                             {user !== null && <Link className='link' onClick={() => setOpenMenu(false)} style={{textDecoration: "none"}}to={`orders/${user._id}`}><li>Orders</li></Link>}
                         </ul>
                     </div>
@@ -75,8 +74,8 @@ const Navbar = () => {
                         user === null?
                         <div className="user">
                         
-                            <Link onClick={() => setOpenMenu(false)} style={{textDecoration: "none"}} to="/register"><span>Register</span></Link>
-                            <Link onClick={() => setOpenMenu(false)} style={{textDecoration: "none"}} to="/login"><span>Login</span></Link>
+                            <Link onClick={() => setOpenMenu(false)} style={{textDecoration: "none", color: "inherit"}} to="/register"><span>Register</span></Link>
+                            <Link onClick={() => setOpenMenu(false)} style={{textDecoration: "none", color: "inherit"}} to="/login"><span>Login</span></Link>
                         
                         </div>
 
@@ -122,8 +121,8 @@ const Navbar = () => {
                 </div>
 
                 <div className="actions">
-                    <Link to={`/profile/${user._id}`} style={{textDecoration: "none"}}>
-                        <button onClick={() => setProfileOpen(false)}><EditIcon className='icon' />Edit Profile</button>
+                    <Link to={`/profile/${user._id}`} style={{textDecoration: "none", color: "inherit"}}>
+                        <button onClick={() => setProfileOpen(false)}><EditIcon className='icon' />Profile</button>
                     </Link>
                     <button onClick={() => dispatch(logout())}><LogoutOutlinedIcon className='icon' />Logout</button>
                 </div>

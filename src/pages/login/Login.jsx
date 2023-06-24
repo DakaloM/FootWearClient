@@ -70,7 +70,7 @@ const Login = () => {
                   />
                 </div>
 
-                <span className="link">Dont have an account? <Link style={{textDecoration: "none"}} to="/register"><span>Register here</span></Link></span>
+                <span className="link">Dont have an account? <Link style={{textDecoration: "none", color: "inherit"}} to="/register"><span>Register here</span></Link></span>
                 <div className="inputGroup">
                   <button onClick={handleLogin}>Login</button>
                 </div>

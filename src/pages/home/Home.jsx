@@ -66,13 +66,13 @@ const Home = () => {
                       </div>
                     
                     <span className="price">R {product.price}</span>
-                    <Link style={{textDecoration: "none"}} to={`/product/${product._id}`}><span className="button">View</span></Link>
+                    <Link style={{textDecoration: "none", color: "inherit"}} to={`/product/${product._id}`}><span className="button">View</span></Link>
                   </div>
                 </div>
               ))}
 
               <div className="buttonContainer">
-                <Link style={{textDecoration: "none"}} to="/products"><span className="button">More Shoes<KeyboardArrowRightIcon className='icon'/></span></Link>
+                <Link style={{textDecoration: "none", color: "inherit"}} to="/products"><span className="button">More Shoes<KeyboardArrowRightIcon className='icon'/></span></Link>
               </div>
           </div>
         </div>
@@ -100,7 +100,7 @@ const Home = () => {
                           <div className={specialOffer? "wrapper active" : "wrapper"}>
                               <span className="title">Popular Shoes</span>
                               <p className="desc">Take a quick look at our most rated Shoes</p>
-                              <Link style={{textDecoration: "none"}} to="/popular"><span className="button">Shop Now</span></Link>
+                              <Link style={{textDecoration: "none", color: "inherit"}} to="/products"><span className="button">Shop Now</span></Link>
                           </div>
                         </div>
                     </div>
@@ -121,7 +121,7 @@ const Home = () => {
 
                       <div className="info">
                         <span className="title">Sport</span>
-                        <Link style={{textDecoration: "none"}} to="/products/sport"><span className="button">Shop Now</span></Link>
+                        <Link style={{textDecoration: "none", color: "inherit"}} to="/products/sport"><span className="button">Shop Now</span></Link>
                       </div>
                     </div>
                     <div className="item boots">
@@ -132,7 +132,7 @@ const Home = () => {
 
                       <div className="info">
                         <span className="title">Boots</span>
-                        <Link style={{textDecoration: "none"}} to="/products/boots"><span className="button">Shop Now</span></Link>
+                        <Link style={{textDecoration: "none", color: "inherit"}} to="/products/boots"><span className="button">Shop Now</span></Link>
                       </div>
                     </div>
                     <div className="item kids">
@@ -143,7 +143,7 @@ const Home = () => {
 
                       <div className="info">
                         <span className="title">Kids</span>
-                        <Link style={{textDecoration: "none"}} to="/products/kids"><span className="button">Shop Now</span></Link>
+                        <Link style={{textDecoration: "none", color: "inherit"}} to="/products/kids"><span className="button">Shop Now</span></Link>
                       </div>
                     </div>
                     <div className="item summer">
@@ -154,7 +154,7 @@ const Home = () => {
 
                       <div className="info">
                         <span className="title">Summer</span>
-                        <Link style={{textDecoration: "none"}} to="/products/summer"><span className="button">Shop Now</span></Link>
+                        <Link style={{textDecoration: "none", color: "inherit"}} to="/products/summer"><span className="button">Shop Now</span></Link>
                       </div>
                     </div>
                     <div className="item indoor">
@@ -165,7 +165,7 @@ const Home = () => {
 
                       <div className="info">
                         <span className="title">In-door</span>
-                        <Link style={{textDecoration: "none"}} to="/products/indoor"><span className="button">Shop Now</span></Link>
+                        <Link style={{textDecoration: "none", color: "inherit"}} to="/products/indoor"><span className="button">Shop Now</span></Link>
                       </div>
                     </div>
                     <div className="item formal">
@@ -176,7 +176,7 @@ const Home = () => {
 
                       <div className="info">
                         <span className="title">Formal</span>
-                        <Link style={{textDecoration: "none"}} to="/products/formal"><span className="button">Shop Now</span></Link>
+                        <Link style={{textDecoration: "none", color: "inherit"}} to="/products/formal"><span className="button">Shop Now</span></Link>
                       </div>
                     </div>
                   </div>

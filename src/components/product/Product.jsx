@@ -61,7 +61,7 @@ const Product = ({product}) => {
             numquam blanditiis harum quisquam eius sed odit
         </span> */}
         <span className="price">$ {product.price.toFixed(2)}</span>
-        <Link style={{textDecoration: "none"}} to={`/product/${product._id}`}><span className="button">View Shoe</span></Link>
+        <Link style={{textDecoration: "none", color: "inherit"}} to={`/product/${product._id}`}><span className="button">View Shoe</span></Link>
         </div>
   
     </div>

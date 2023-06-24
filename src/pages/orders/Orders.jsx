@@ -57,7 +57,7 @@ const Orders = () => {
                         </div>
                         <div className="action">
                             
-                            <Link style={{textDecoration: "none"}} to={`/order/${order._id}`}><button>View Order</button></Link>
+                            <Link style={{textDecoration: "none", color: "inherit"}} to={`/order/${order._id}`}><button>View Order</button></Link>
                         </div>
                     </div>
                 ))}

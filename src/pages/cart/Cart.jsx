@@ -44,10 +44,15 @@ const Cart = () => {
   }
 
   const handleCheckout = () => {
-    if(user !== null) {
-      setAddShippingInfo(true);
-    } else {
-      navigate("/login?reditect");
+
+    if (Math.abs(cart.total.toFixed(2) > 0)){
+
+      
+      if(user !== null) {
+        setAddShippingInfo(true);
+      } else {
+        navigate("/login?reditect");
+      }
     }
   }
 
@@ -154,13 +159,13 @@ const Cart = () => {
                         <span className="value">{cart.quantity}</span>
                       </div>
                       <div className="item">
-                        <span className="key">Total (R):</span>
-                        <span className="value">R {cart.total.toFixed(2)}</span>
+                        <span className="key">Total ($):</span>
+                        <span className="value">$ {Math.abs(cart.total.toFixed(2))}</span>
                       </div>
                       <button onClick={handleCheckout}>Checkout</button>
                     </div>
 
-                    <Link style={{textDecoration: "none"}} to={"/products"}><span className="link"><KeyboardArrowLeftIcon className='icon'/>Continue Shopping</span></Link>
+                    <Link style={{textDecoration: "none", color: "inherit"}} to={"/products"}><span className="link"><KeyboardArrowLeftIcon className='icon'/>Continue Shopping</span></Link>
 
                     <div className="extras">
                       <div className="item">
