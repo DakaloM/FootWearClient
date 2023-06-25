@@ -20,6 +20,8 @@ import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
 import Review from '../../components/review/Review';
 import Message from '../../components/message/Message';
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import Stack from '@mui/material/Stack';
+import CircularProgress from '@mui/material/CircularProgress';
 
 const Product = () => {
 
@@ -29,6 +31,8 @@ const Product = () => {
   const [product, setProduct] = useState([]);
   const [count, setCount] = useState(1);
   const [color, setColor] = useState("");
+  const [colorMissing, setColorMissing] = useState(false)
+  const [sizeMissing, setSizeMissing] = useState(false)
   const [size, setSize] = useState("");
   const [message, setMessage] = useState("")
   const [userReview, setUserReview] = useState()
@@ -42,6 +46,7 @@ const Product = () => {
   const [formHeight, setFormHeight] = useState(0);
   const [rating, setRating ] = useState(0);
   const [productRating, setProductRating] = useState([])
+  const [loading, setLoading] = useState(true);
 
   const dispatch = useDispatch();
 
@@ -49,6 +54,8 @@ const Product = () => {
   const productId = useParams().id;
   const user = useSelector(state => state.user.currentUser);
   const userId = user? user._id : null;
+
+  
 
   useEffect(() => {
     if(complete === true){
@@ -85,7 +92,7 @@ const Product = () => {
   };
 
 
-
+  console.log("COLOR: ", color)
 
   useEffect(() => {
     if(userReview) {
@@ -97,13 +104,16 @@ const Product = () => {
 
   const handleCartAdd = () => {
 
-      const { desc, categories, inStock, rating, __v, createdAt, updatedAt, color, quantity, size,...others} = product
+      
       const exist = cart.products.find(product => product._id === productId)? true : false
 
       
+        
+     
+      if(color !== "" && size !== "") {
 
         if (!exist) {
-  
+          const { desc, categories, inStock, rating, __v, createdAt, updatedAt, color, quantity, size,...others} = product
           dispatch(addProduct({...others, quantity: count, color, size }));
           setComplete(true)
           setCompleteType("success")
@@ -118,6 +128,16 @@ const Product = () => {
         window.setTimeout(() => {
           setComplete(false)
         }, 7000)
+      }
+      else {
+        if(color === "") {
+          setColorMissing(true)
+        }
+        else if(size === "") {
+          setSizeMissing(true)
+        }
+      }
+
       
 
       
@@ -217,6 +237,7 @@ const Product = () => {
       try {
         const res = await publicRequest.get(`products/${productId}`);
         setProduct(res.data);
+        setLoading(false);
       } catch (error) {
         console.log(error)
       }
@@ -261,168 +282,184 @@ const Product = () => {
             </p>
         </div>
 
-        <div className="container display">
-            <div className="productContainer">
-              
-                <div className="left">
-                  <div className="imageContainer">
-                    <img src={product.image} alt="" />
-                  </div>
-                </div>
-              
+        {
+                  loading ? <Stack sx={{
+                                display: "flex",
+                                justifyContent: "center",
+                                alignItems: "center",
+                                }}  width={"100%"} height={"70px"} spacing={2} direction="row">
+                                <CircularProgress sx={{color: "#8363ac"}} />
+                          </Stack>
 
-              <div className="right">
-                  <span className="name">{product.title}</span>
-                  <p className="desc">
-                    {product.desc}
-                  </p>
-                  {rating > 0 && <div className="stars">
+                          :
 
-                          {Array(5).fill().map((_, index) => (
-
-                            rating >= index + 1 ? (
-                              <StarIcon className='icon' key={index}/>
-                            ): (
-                              <StarBorderOutlinedIcon  className='icon' key={index}/>
-                            )
-                            
-                          ))}
-                          
-                  </div>}
-                  <span className="price">$ {product.price}</span>
-
-                  <select name="color" id="" onChange={e => setColor(e.target.value)}>
-                    <option selected disabled>Choose Color</option>
-                    {
-                      product.color && product.color.map((c) => (
-                        <option value={c} key={c}>{c}</option>
-                      ))
-                    }
-                  </select>
-
-                  <select name="size" id="" onChange={e => setSize(e.target.value)}>
-                    <option selected disabled>Choose Size</option>
-                    {
-                      product.size && product.size.map((size) => (
-                        <option value={size} key={size}>{size}</option>
-                      ))
-                    }
-                  </select>
-
-                  <div className="quantity">
-                    <span className="title">Qauntity</span>
-                    <div className="qItem">
-                      <span className='qLeft' onClick={() => setCount(count > 1?count - 1 : 1)}><RemoveIcon  className='icon'/></span>
-                      <span className="count">{count}</span>
-                      <span className='qRight' onClick={() => setCount(count + 1)}><AddIcon  className='icon right'/></span>
-                    </div>
-                  </div>
-
-                  <span className="button" onClick={handleCartAdd}>Add to cart</span>
-
-                  
-              </div>
-            </div>
-            <div className="links">
-
-                    <Link style={{textDecoration: "none"}} to="/products"><span><ChevronLeftIcon className='icon' />Continue Shopping</span></Link>
-                    <Link style={{textDecoration: "none"}} to="/cart"><span>Proceed to cart<ChevronRightIcon className='icon' /></span></Link>
-
-                  </div>
-            <div className="banner">
-              <span className="title">Reviews</span>
-              {user !== null && <span className='add' onClick={openAddReview}><AddIcon className='icon'/> {userReview && userReview.length !== 0 ? "Edit Review" : "Add Review"}</span>}
-            </div>
-            <div className="reviews">
             
-            <div className="left">
-              
-                  <div className="heading review">
-                    <span className="title">What they say about this product</span>
-                  
-                  </div>
-                
-
-                <div className="rewiewList">
-
-                  
-
-                  {
-                    productReviews.length > 0 ? 
-                    productReviews.map((r) =>(
-                      <Review review={r} key={r._id}/>
-                    ))
-                    
-                    : "No reviews yet for this product"
-                  }
-
-                </div>
-            </div>
-
-            <div className="right">
-                <div className="userReviewContainer" style={{height: `${reviewHeight}`}}>
-                  {
-                    userReview && userReview.length !== 0 ?
-                    <div className={displayUserReview? "userReview active" : " userReview"}>
-                      <span className="title">Your review</span>
-                      <Review review={userReview} user={true} />
-                    </div>
-
-                    : user === null ? <span className='noUserMessage'>You must be logged in to add a review</span> : <span className='noUserMessage'>You have not yet added a review for this product</span>
-                  }
-                </div>
-              <div className={openReviewForm? "reviewForm open" : "reviewForm"} style={{height: `${formHeight}`}}>
-
-                <span className="title">Review Form</span>
-                <p className="desc">Kindly fill the form below and let us know how you feel about this product</p>
-
-                <form action="">
-
-                    <div className="inputGroup poster">
-                      {product.image &&  <img src={product.image} alt="" />}
-                    </div>
-
-                    <div className="inputGroup poster">
-                      <span className="evaluate">Evaluate</span>
-
-                        <div className="stars">
-
-                          {Array(5).fill().map((_, index) => (
-
-                            number >= index + 1 ? (
-                              <StarIcon className='icon' onClick={() => SetNumber(index +1)} key={index}/>
-                            ): (
-                              <StarBorderOutlinedIcon  className='icon'onClick={() => SetNumber(index +1)} key={index}/>
-                            )
-                            
-                          ))}
+                    <div className="container display">
+                        <div className="productContainer">
                           
-                      </div>
+                            <div className="left">
+                              <div className="imageContainer">
+                                <img src={product.image} alt="" />
+                              </div>
+                            </div>
+                          
 
-                      <span className="feedback">
-                        {
-                          number === 1 ? "Not Satisfied" : number === 2? "Almost Satisfied": number === 3? "Satisfied"
-                          : number === 4? "Very Satisfied" : number === 5 ? "Excellent Product" : ""
-                        }
-                      </span>
+                          <div className="right">
+                              <span className="name">{product.title}</span>
+                              <p className="desc">
+                                {product.desc}
+                              </p>
+                              {rating > 0 && <div className="stars">
 
+                                      {Array(5).fill().map((_, index) => (
+
+                                        rating >= index + 1 ? (
+                                          <StarIcon className='icon' key={index}/>
+                                        ): (
+                                          <StarBorderOutlinedIcon  className='icon' key={index}/>
+                                        )
+                                        
+                                      ))}
+                                      
+                              </div>}
+                              <span className="price">$ {product.price}</span>
+
+                              <select style={{ marginBottom:colorMissing === false? "20px" : " 5px"}} name="color" id="" onChange={e => setColor(e.target.value)}>
+                                <option selected disabled>Choose Color</option>
+                                {
+                                  product.color && product.color.map((c) => (
+                                    <option value={c} key={c}>{c}</option>
+                                  ))
+                                }
+                              </select>
+                              {colorMissing && <span className="erroMessage">Chose color</span>}
+
+                              <select style={{ marginBottom:sizeMissing === false? "20px" : " 5px"}} name="size" id="" onChange={e => setSize(e.target.value)}>
+                                <option selected disabled>Choose Size</option>
+                                {
+                                  product.size && product.size.map((size) => (
+                                    <option value={size} key={size}>{size}</option>
+                                  ))
+                                }
+                              </select>
+                              {sizeMissing && <span className="erroMessage">Chose size</span>}
+
+                              <div className="quantity">
+                                <span className="title">Qauntity</span>
+                                <div className="qItem">
+                                  <span className='qLeft' onClick={() => setCount(count > 1?count - 1 : 1)}><RemoveIcon  className='icon'/></span>
+                                  <span className="count">{count}</span>
+                                  <span className='qRight' onClick={() => setCount(count + 1)}><AddIcon  className='icon right'/></span>
+                                </div>
+                              </div>
+
+                              <span className="button" onClick={handleCartAdd}>Add to cart</span>
+
+                              
+                          </div>
+                        </div>
+                        <div className="links">
+
+                                <Link style={{textDecoration: "none"}} to="/products"><span><ChevronLeftIcon className='icon' />Continue Shopping</span></Link>
+                                <Link style={{textDecoration: "none"}} to="/cart"><span>Proceed to cart<ChevronRightIcon className='icon' /></span></Link>
+
+                              </div>
+                        <div className="banner">
+                          <span className="title">Reviews</span>
+                          {user !== null && <span className='add' onClick={openAddReview}><AddIcon className='icon'/> {userReview && userReview.length !== 0 ? "Edit Review" : "Add Review"}</span>}
+                        </div>
+                        <div className="reviews">
+                        
+                        <div className="left">
+                          
+                              <div className="heading review">
+                                <span className="title">What they say about this product</span>
+                              
+                              </div>
+                            
+
+                            <div className="rewiewList">
+
+                              
+
+                              {
+                                productReviews.length > 0 ? 
+                                productReviews.map((r) =>(
+                                  <Review review={r} key={r._id}/>
+                                ))
+                                
+                                : "No reviews yet for this product"
+                              }
+
+                            </div>
+                        </div>
+
+                        <div className="right">
+                            <div className="userReviewContainer" style={{height: `${reviewHeight}`}}>
+                              {
+                                userReview && userReview.length !== 0 ?
+                                <div className={displayUserReview? "userReview active" : " userReview"}>
+                                  <span className="title">Your review</span>
+                                  <Review review={userReview} user={true} />
+                                </div>
+
+                                : user === null ? <span className='noUserMessage'>You must be logged in to add a review</span> : <span className='noUserMessage'>You have not yet added a review for this product</span>
+                              }
+                            </div>
+                          <div className={openReviewForm? "reviewForm open" : "reviewForm"} style={{height: `${formHeight}`}}>
+
+                            <span className="title">Review Form</span>
+                            <p className="desc">Kindly fill the form below and let us know how you feel about this product</p>
+
+                            <form action="">
+
+                                <div className="inputGroup poster">
+                                  {product.image &&  <img src={product.image} alt="" />}
+                                </div>
+
+                                <div className="inputGroup poster">
+                                  <span className="evaluate">Evaluate</span>
+
+                                    <div className="stars">
+
+                                      {Array(5).fill().map((_, index) => (
+
+                                        number >= index + 1 ? (
+                                          <StarIcon className='icon' onClick={() => SetNumber(index +1)} key={index}/>
+                                        ): (
+                                          <StarBorderOutlinedIcon  className='icon'onClick={() => SetNumber(index +1)} key={index}/>
+                                        )
+                                        
+                                      ))}
+                                      
+                                  </div>
+
+                                  <span className="feedback">
+                                    {
+                                      number === 1 ? "Not Satisfied" : number === 2? "Almost Satisfied": number === 3? "Satisfied"
+                                      : number === 4? "Very Satisfied" : number === 5 ? "Excellent Product" : ""
+                                    }
+                                  </span>
+
+                                </div>
+                                <div className="inputGroup">
+                                  <textarea name="" id="message" cols="30" rows="10" placeholder='Write your review message here'
+                                    onChange={e => setMessage(e.target.value)} value={message}
+                                  ></textarea>
+                                </div>
+                                
+
+                                <button onClick={userReview && userReview.length !== 0 ? handleRatingUpdate : handleRating}>Send</button>
+
+                                
+                                <span className="close" onClick={closeAddReview}><CancelIcon className='icon'/></span>
+                            </form>
+                          </div>
+                        </div>
+                        </div>
                     </div>
-                    <div className="inputGroup">
-                      <textarea name="" id="message" cols="30" rows="10" placeholder='Write your review message here'
-                        onChange={e => setMessage(e.target.value)} value={message}
-                      ></textarea>
-                    </div>
-                    
+        }
 
-                    <button onClick={userReview && userReview.length !== 0 ? handleRatingUpdate : handleRating}>Send</button>
-
-                    
-                    <span className="close" onClick={closeAddReview}><CancelIcon className='icon'/></span>
-                </form>
-              </div>
-            </div>
-            </div>
-        </div>
 
         <Footer />
       </> : "Loading.."}

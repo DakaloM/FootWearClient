@@ -65,11 +65,62 @@
                 }
             }
 
+            .demoUser {
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+                width: 100%;
+                height: fit-content;
+                align-self: flex-end;
+                border-radius: 5px;
+                margin-top: 50px;
+                -webkit-box-shadow: 0px 0px 8px -6px rgba(0,0,0,0.75);
+                -moz-box-shadow: 0px 0px 8px -6px rgba(0,0,0,0.75);
+                box-shadow: 0px 0px 8px -6px rgba(0,0,0,0.75);
+
+                @media all and (max-width: 432px) {
+                    flex-direction: column;
+                    gap: 10px;
+                    width: fit-content;
+                    padding: 20px;
+                    align-self: flex-start;
+                }
+
+                .text {
+                    font-size: 14px;
+                    font-weight: 600;
+                    color: white;
+                    background-color: #8363acae;
+                    padding: 3px 7px;
+                    margin-right: 20px;
+                }
+
+                .item {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    font-size: 14px;
+                    color: gray;
+                    gap: 10px;
+                    margin-right: 10px;
+
+                    .key {
+
+                    }
+
+                    .value {
+                        color: #8363ac;
+                    }
+                }
+            }
+
             .inputGroup {
                 display: flex;
                 flex-direction: column;
                 margin-bottom: 20px;
                 width: 100%;
+
+
 
                 label {
                     font-size: 16px;

@@ -16,6 +16,7 @@ const Home = () => {
   const [specialOffer, setSpecialOffer] = useState(false)
   const [number, SetNumber] = useState(0)
   const [products, setProducts] = useState([])
+  const [loading, setLoading] = useState(true);
   
   const rating = 4;
 
@@ -24,6 +25,7 @@ const Home = () => {
       try {
         const res = await publicRequest.get(`products?new=true`)
         setProducts(res.data)
+        setLoading(false)
       } catch (error) {
         console.log(error)
       }
@@ -37,7 +39,7 @@ const Home = () => {
         
         <MultiCarousel />
 
-        <div className="featuredProducts display">
+        {loading === false && <div className="featuredProducts display">
           <div className="heading">
               <h1 className="title">Featured Shoes</h1>
               <hr className="hline" />
@@ -75,7 +77,7 @@ const Home = () => {
                 <Link style={{textDecoration: "none", color: "inherit"}} to="/products"><span className="button">More Shoes<KeyboardArrowRightIcon className='icon'/></span></Link>
               </div>
           </div>
-        </div>
+        </div>}
 
         <div className="categories display">
           <div className="heading right">
@@ -184,11 +186,6 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="products">
-          <div className="wrapper">
-
-          </div>
-        </div>
 
         <Footer />
     </div>

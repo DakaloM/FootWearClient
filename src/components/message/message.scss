@@ -3,15 +3,18 @@
     top: 80px;
     right: 0;
     margin: 0 auto;
-    width: fit-content;
-    background-color: black;
+    width: 300px;
+    height: 50px;
+    background-color: white;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
-    border-radius: 5px;
     z-index: 10;
+    -webkit-box-shadow: 0px 0px 12px -4px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 12px -4px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 12px -4px rgba(0,0,0,0.75);
     
     
 
@@ -26,16 +29,16 @@
 
     span {
         padding: 5px 30px;
-        color: rgb(110, 226, 110);
-        font-size: 14px;
+        color: red;
+        font-size: 13px;
         font-weight: 400;
+        width: 300px;
     }
 
     .timer {
         height: 5px;
         width: 100%;
-        background-color: black;
-        border-radius: 0 0 5px 5px;
+        background-color: #f2f2f2;
         overflow: hidden;
 
         &.hide {
@@ -43,16 +46,15 @@
         }
 
         .progress {
-            background-color: rgb(110, 226, 110);
+            background-color: #8363ac;
             height: 100%;
             width: 100%;
-            border-radius: 0  5px 5px 0;
             overflow: hidden;
 
             
 
             &.fade {
-                background-color: rgb(110, 226, 110);
+                background-color: #8363ac;
                 transform: translateX(-110%);
                 transition: all 5s ease-in-out;
                 

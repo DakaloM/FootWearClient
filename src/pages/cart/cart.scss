@@ -2,6 +2,27 @@
     margin-top: 100px;
     overflow: hidden;
 
+    .cardInfo {
+        display: flex;
+        flex-direction: column;
+        font-size: 14px;
+        color: gray;
+        margin-top: 30px;
+        padding: 10px;
+        border: 1px solid lightgray;
+        padding-top: 0;
+
+        .head {
+            width: 100%;
+            text-align: center;
+            background-color: #8363ac;
+            padding: 3px 10px;
+            margin-bottom: 10px;
+            color: white;
+            margin-left: -10px;
+        }
+    }
+
     .display {
         width: calc(100% - 200px);
         padding: 0 100px;

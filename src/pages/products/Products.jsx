@@ -16,6 +16,8 @@ import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
 import SearchIcon from '@mui/icons-material/Search';
 import Product from '../../components/product/Product';
 import Pagination from '../../components/pagination copy/Pagination';
+import Stack from '@mui/material/Stack';
+import CircularProgress from '@mui/material/CircularProgress';
 
 const Products = () => {
 
@@ -57,9 +59,11 @@ const Products = () => {
   useEffect(() => {
       
       if(category) {
-        setDisplayList(productList);
+       
         if(search !== ""){
           setDisplayList(productList.filter(product => product.title.toLowerCase().includes(search.toLowerCase())));
+        } else {
+          setDisplayList(productList);
         }
         
         
@@ -102,55 +106,69 @@ const Products = () => {
                   molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
                 </p>
             </div>
-          <div className="wrapper">
 
-            {displayList && displayList.length > 0 ? <div className={category ? "fiterSection category": "fiterSection "}>
-              
-                <div className="filterItem category">
+          {
+              loading ? <Stack sx={{
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            }}  width={"100%"} height={"70px"} spacing={2} direction="row">
+                            <CircularProgress sx={{color: "#8363ac"}} />
+                        </Stack>
 
-
-                    {!category && <select name="categories" id=""
-                        onChange={handleFilterChange}
-                      >
-                      <option selected disabled >Category</option>
-                      <option value="formal">Formal</option>
-                      <option value="summer">summer</option>
-                      <option value="kids">kids</option>
-                      <option value="indoor">indoor</option>
-                      <option value="boots">boots</option>
-                      <option value="sport">sport</option>
-                    </select>}
-                  
-
-                </div>
-
-                <div className=" search">
-                  <SearchIcon className='icon' />
-                  <input type="text" placeholder='Search...' onChange={e => setSearch(e.target.value)}
-                    value={search}
-                  />
-                </div>
-                
+                        :
 
 
-              
-            </div> : "Loading..."}
+                      <div className="wrapper">
 
-            <div className="productsList ">
-                <div className="wrapper">
+                        {displayList && displayList.length > 0 ? <div className={category ? "fiterSection category": "fiterSection "}>
+                          
+                            <div className="filterItem category">
 
-                  {
-                    currentProducts.map((product) => (
-                      <Product product={product} key={product._id} />
-                    ))
-                  }
 
-                </div>
-            </div>
+                                {!category && <select name="categories" id=""
+                                    onChange={handleFilterChange}
+                                  >
+                                  <option selected disabled >Category</option>
+                                  <option value="formal">Formal</option>
+                                  <option value="summer">summer</option>
+                                  <option value="kids">kids</option>
+                                  <option value="indoor">indoor</option>
+                                  <option value="boots">boots</option>
+                                  <option value="sport">sport</option>
+                                </select>}
+                              
 
-            <Pagination productsPerPage={perPage} currentPage={currentPage} 
-                totalProducts={displayList.length}  setCurrentPage={setCurrentPage}/>
-          </div>
+                            </div>
+
+                            <div className=" search">
+                              <SearchIcon className='icon' />
+                              <input type="text" placeholder='Search...' onChange={e => setSearch(e.target.value)}
+                                value={search}
+                              />
+                            </div>
+                            
+
+
+                          
+                        </div> : "Loading..."}
+
+                        <div className="productsList ">
+                            <div className="wrapper">
+
+                              {
+                                currentProducts.map((product) => (
+                                  <Product product={product} key={product._id} />
+                                ))
+                              }
+
+                            </div>
+                        </div>
+
+                        <Pagination productsPerPage={perPage} currentPage={currentPage} 
+                            totalProducts={displayList.length}  setCurrentPage={setCurrentPage}/>
+                      </div>
+          }
 
           
         </div>

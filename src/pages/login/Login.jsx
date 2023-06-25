@@ -76,6 +76,18 @@ const Login = () => {
                 </div>
 
                 {error && <span className="error">Something went wrong!</span>}
+
+                <div className="demoUser">
+                  <span className="text">Demo User</span>
+                  <div className="item">
+                    <span className="key">Username:</span>
+                    <span className="value">dakalo</span>
+                  </div>
+                  <div className="item">
+                    <span className="key">Password:</span>
+                    <span className="value">dk970329</span>
+                  </div>
+                </div>
               </form>
             </div>
       
