@@ -88,7 +88,7 @@ const Orders = () => {
                                             <div className="listItem">
                                                 <span className="id">{order._id}</span>
                                                 <span className="count"><ShoppingBagOutlinedIcon  className='icon'/>{order.quantity}</span>
-                                                <span className="amount">${order.amount}</span>
+                                                <span className="amount">${order.amount.toFixed(2)}</span>
                                                 <div className="status pending">
                                                     <span className={order.status}>{order.status}</span>
                                                 </div>

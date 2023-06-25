@@ -5,10 +5,13 @@ import { userRequest } from '../../requestMethods';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
+import Stack from '@mui/material/Stack';
+import CircularProgress from '@mui/material/CircularProgress';
 
 const Order = () => {
 
     const [order, setOrder] = useState([]);
+    const [loading, setLoading] = useState(true)
     const orderId = useParams().id
     const user = useSelector(state => state.user.currentUser)
 
@@ -23,8 +26,10 @@ const Order = () => {
             try {
                 const res = await userRequest.get(`orders/${user._id}/${orderId}`);
                 setOrder(res.data)
+                setLoading(false)
             } catch (error) {
                 console.log(error)
+                setLoading(false)
             }
         }
 
@@ -41,9 +46,17 @@ const Order = () => {
                   See all details about this order
                 </p>
             </div>
-            
+            {
+                loading ?  <Stack sx={{
+                                    display: "flex",
+                                    justifyContent: "center",
+                                    alignItems: "center",
+                                }}  width={"100%"} height={"70px"} spacing={2} direction="row">
+                                    <CircularProgress sx={{color: "#8363ac"}} />
+                            </Stack>
 
-            {order?
+                            :
+            order?
             <div className="order">
                 <div className="top">
                     <span className="header">Order Summary</span>
@@ -89,7 +102,9 @@ const Order = () => {
                     </div>
                 </div>
             </div> 
-            : "No Orders made Yet"}
+            : "No Orders made Yet"
+            }
+
             
         </div>
 

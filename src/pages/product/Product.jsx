@@ -30,10 +30,10 @@ const Product = () => {
   const [number, SetNumber] = useState(0)
   const [product, setProduct] = useState([]);
   const [count, setCount] = useState(1);
-  const [color, setColor] = useState("");
+  const [colorChoice, setColorChoice] = useState("");
   const [colorMissing, setColorMissing] = useState(false)
   const [sizeMissing, setSizeMissing] = useState(false)
-  const [size, setSize] = useState("");
+  const [sizeChoice, setSizeChoice] = useState("");
   const [message, setMessage] = useState("")
   const [userReview, setUserReview] = useState()
   const [productReviews, setProductReviews] = useState([])
@@ -92,7 +92,6 @@ const Product = () => {
   };
 
 
-  console.log("COLOR: ", color)
 
   useEffect(() => {
     if(userReview) {
@@ -106,15 +105,13 @@ const Product = () => {
 
       
       const exist = cart.products.find(product => product._id === productId)? true : false
-
-      
-        
+       
      
-      if(color !== "" && size !== "") {
+      if(colorChoice !== "" && sizeChoice !== "") {
 
         if (!exist) {
           const { desc, categories, inStock, rating, __v, createdAt, updatedAt, color, quantity, size,...others} = product
-          dispatch(addProduct({...others, quantity: count, color, size }));
+          dispatch(addProduct({...others, quantity: count, color : colorChoice, size: sizeChoice}));
           setComplete(true)
           setCompleteType("success")
           setCompleteMessage("Product added to cart")
@@ -130,10 +127,10 @@ const Product = () => {
         }, 7000)
       }
       else {
-        if(color === "") {
+        if(colorChoice === "") {
           setColorMissing(true)
         }
-        else if(size === "") {
+        else if(sizeChoice === "") {
           setSizeMissing(true)
         }
       }
@@ -324,7 +321,7 @@ const Product = () => {
                               </div>}
                               <span className="price">$ {product.price}</span>
 
-                              <select style={{ marginBottom:colorMissing === false? "20px" : " 5px"}} name="color" id="" onChange={e => setColor(e.target.value)}>
+                              <select style={{ marginBottom:colorMissing === false? "20px" : " 5px"}} name="color" id="" onChange={e => setColorChoice(e.target.value)}>
                                 <option selected disabled>Choose Color</option>
                                 {
                                   product.color && product.color.map((c) => (
@@ -334,7 +331,7 @@ const Product = () => {
                               </select>
                               {colorMissing && <span className="erroMessage">Chose color</span>}
 
-                              <select style={{ marginBottom:sizeMissing === false? "20px" : " 5px"}} name="size" id="" onChange={e => setSize(e.target.value)}>
+                              <select style={{ marginBottom:sizeMissing === false? "20px" : " 5px"}} name="size" id="" onChange={e => setSizeChoice(e.target.value)}>
                                 <option selected disabled>Choose Size</option>
                                 {
                                   product.size && product.size.map((size) => (

@@ -60,19 +60,21 @@ const Cart = () => {
     setStripeToken(token)
   }
 
+
+
   useEffect(() => {
     const makePayment = async () => {
       try {
         const res = await userRequest.post(`checkout/payment`, {
             tokenId: stripeToken.id,
-            amount: cart.total * 100
+            amount: parseInt(cart.total.toFixed(2) * 100)
         })
 
         try {
           const res = await userRequest.post('orders', {
             userId: user._id,
             products: cart.products,
-            amount: cart.total,
+            amount: parseFloat(cart.total).toFixed(2),
             address: {
               streetAddress: user.streetAddress,
               city: user.city,
@@ -199,7 +201,7 @@ const Cart = () => {
                       </div>
                         <StripeCheckout
                           name="FootWear" // the pop-in header titler subtitle
-                          amount={cart.total * 100} // cents
+                          amount={ parseInt(cart.total.toFixed(2) * 100)} // cents
                           currency="USD"
                           billingAddress={false}
                           token={onToken} // submit callback
