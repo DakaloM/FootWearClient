@@ -25,7 +25,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 
 const Product = () => {
 
-  const [file, setFile] = useState("");
+  
   const [openReviewForm, setOpenReviewForm] = useState(false)
   const [number, SetNumber] = useState(0)
   const [product, setProduct] = useState([]);
